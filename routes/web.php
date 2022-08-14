@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,14 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', HomeController::class);
 
+/*
 Route::get('productos', [ProductController::class, 'index']);
 Route::get('productos/create', [ProductController::class, 'create']);
 Route::get('productos/{producto}', [ProductController::class, 'show']);
+*/
+
+Route::controller(ProductController::class)->group(function(){
+    Route::get('productos', 'index');
+    Route::get('productos/create', 'create');
+    Route::get('productos/{producto}', 'show');
+});
