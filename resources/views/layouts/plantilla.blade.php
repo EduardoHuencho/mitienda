@@ -31,3 +31,4 @@
     @yield('content')
 </body>
 </html>
+

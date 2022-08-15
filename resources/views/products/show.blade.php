@@ -4,6 +4,6 @@
 
 @section('content')
     <h1>
-        hola soy show {{$producto}}
+        hola soy show {{$producto->name}}
     </h1>
 @endsection

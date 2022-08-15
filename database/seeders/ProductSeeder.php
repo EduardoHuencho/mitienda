@@ -17,10 +17,13 @@ class ProductSeeder extends Seeder
         /*
         $product = new Product();
         
-        $product->name = 'hola';
+        $product->name = 'adios';
         $product->price = '100';
 
         $product-> save();
         */
+
+        Product::factory(100)->create();
+
     }
 }
