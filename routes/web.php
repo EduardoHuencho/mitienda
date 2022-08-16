@@ -32,5 +32,8 @@ Route::get('productos/{producto}', [ProductController::class, 'show']);
 Route::controller(ProductController::class)->group(function(){
     Route::get('productos', 'index')->name('productos.index');
     Route::get('productos/create', 'create')->name('productos.create');
+
+    Route::post('productos', 'store')->name('productos.store');
+
     Route::get('productos/{id}', 'show')->name('producto.show');
 });
