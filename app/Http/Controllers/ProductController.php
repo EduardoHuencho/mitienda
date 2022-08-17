@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ProductController extends Controller
 {
@@ -20,20 +21,37 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        $producto = new Product();
 
-        $producto->name = $request-> name;
-        $producto->price = $request-> price;
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required'
+        ]);
 
-        $producto->save();
+        $product = new Product();
 
-        return redirect()->route('producto.show', $producto);
+        $product->name = $request-> name;
+        $product->price = $request-> price;
+
+        $product->save();
+
+        return redirect()->route('product.show', $product);
     }
 
-    public function show($id){
-        $producto = Product::find($id);
-        
-        return view('products.show', compact('producto'));
+    public function show(Product $product){
+        return view('products.show', compact('product'));
+    }
+
+    public function edit(Product $product){
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product){
+        $product->name = $request-> name;
+        $product->price = $request-> price;
+
+        $product->save();
+
+        return redirect()->route('product.show', $product);
     }
 
 }

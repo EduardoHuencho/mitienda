@@ -4,33 +4,24 @@
 
 @section('content')
     <h1>
-        hola soy el create
+        hola soy el edit
     </h1>
-    <form action="{{route('product.store')}}" method="POST">
+    <form action="{{route('product.update', $product)}}" method="POST">
 
         @csrf
+        @method('put')
 
         <label>
             Nombre del producto:
             <br>
-            <input type="text" name="name" value="{{old('name')}}">
+            <input type="text" name="name" value="{{$product->name}}">
         </label>
-        @error('name')
-            <br>
-            <small>*{{$message}}</small>
-            <br>
-        @enderror
         <br>
         <label>
             Precio del producto:
             <br>
-            <input type="number" name="price">
+            <input type="number" name="price" value="{{$product->price}}">
         </label>
-        @error('price')
-            <br>
-            <small>*{{$message}}</small>
-            <br>
-        @enderror
         <br>
         <button type="submit">Enviar</button>
     </form>

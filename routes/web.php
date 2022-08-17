@@ -30,10 +30,11 @@ Route::get('productos/{producto}', [ProductController::class, 'show']);
 */
 
 Route::controller(ProductController::class)->group(function(){
-    Route::get('productos', 'index')->name('productos.index');
-    Route::get('productos/create', 'create')->name('productos.create');
+    Route::get('products', 'index')->name('products.index');
+    Route::get('product/create', 'create')->name('product.create');
+    Route::post('product', 'store')->name('product.store');
+    Route::get('product/{product}', 'show')->name('product.show');
+    Route::get('product/{product}/edit', 'edit')->name('product.edit');
 
-    Route::post('productos', 'store')->name('productos.store');
-
-    Route::get('productos/{id}', 'show')->name('producto.show');
+    Route::put('product/{product}', 'update')->name('product.update');
 });
