@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
+use App\Http\Requests\StoreProduct;
 
 class ProductController extends Controller
 {
@@ -20,12 +21,7 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request){
-
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required'
-        ]);
+    public function store(StoreProduct $request){
 
         $product = new Product();
 
@@ -46,6 +42,12 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product){
+
+        $request->validate([
+            'name' => 'required|min:3',
+            'price' => 'required|numeric|integer|min:3'
+        ]);
+
         $product->name = $request-> name;
         $product->price = $request-> price;
 

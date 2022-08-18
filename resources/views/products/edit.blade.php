@@ -14,14 +14,24 @@
         <label>
             Nombre del producto:
             <br>
-            <input type="text" name="name" value="{{$product->name}}">
+            <input type="text" name="name" value="{{old('name', $product->name)}}">
         </label>
+        @error('name')
+            <br>
+            <small>*{{$message}}</small>
+            <br>
+        @enderror
         <br>
         <label>
             Precio del producto:
             <br>
-            <input type="number" name="price" value="{{$product->price}}">
+            <input type="number" name="price" value="{{old('price', $product->price)}}">
         </label>
+        @error('price')
+            <br>
+            <small>*{{$message}}</small>
+            <br>
+        @enderror
         <br>
         <button type="submit">Enviar</button>
     </form>

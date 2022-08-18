@@ -24,7 +24,7 @@
         <label>
             Precio del producto:
             <br>
-            <input type="number" name="price">
+            <input type="text" name="price" value="{{old('price')}}">
         </label>
         @error('price')
             <br>
